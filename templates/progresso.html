@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Progresso</title><meta http-equiv="refresh" content="60">
+<style>body { font-family: Arial; padding: 20px; } #log { background: #f4f4f4; padding: 10px; border: 1px solid #ccc; height: 400px; overflow-y: scroll; }</style>
+</head><body>
+    <h2>🔄 Acompanhando Diagnóstico</h2>
+    <div id="log">Carregando progresso...</div>
+    <script>
+        function atualizarLog() {
+            fetch('/status_log').then(res => res.text()).then(data => {
+                document.getElementById('log').innerHTML = data;
+                if (data.includes("Diagnóstico concluído")) {
+                    setTimeout(() => window.location.href = "/resultado", 3000);
+                }
+            });
+        }
+        setInterval(atualizarLog, 3000);
+        atualizarLog();
+    </script>
+</body></html>

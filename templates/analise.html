@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Análise de Diagnósticos</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        h2 { color: #007ACC; }
+        canvas { margin-top: 30px; max-width: 800px; }
+    </style>
+</head>
+<body>
+    <h2>📈 Painel Analítico de Diagnósticos</h2>
+    <canvas id="erroChart"></canvas>
+    <canvas id="ipChart"></canvas>
+    <a href="/" class="botao-link">⬅️ Voltar ao Dashboard</a>
+    <script>
+        const erroData = {{ erros_por_tipo|tojson }};
+        const ipData = {{ erros_por_ip|tojson }};
+        new Chart(document.getElementById('erroChart'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(erroData),
+                datasets: [{ label: 'Erros por Tipo', data: Object.values(erroData), backgroundColor: '#007ACC' }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false }, title: { display: true, text: 'Distribuição de Erros por Tipo' } } }
+        });
+        new Chart(document.getElementById('ipChart'), {
+            type: 'pie',
+            data: {
+                labels: Object.keys(ipData),
+                datasets: [{ label: 'Erros por IP', data: Object.values(ipData), backgroundColor: ['#007ACC','#00A8E8','#72DDF7','#ADE8F4','#CAF0F8'] }]
+            },
+            options: { responsive: true, plugins: { title: { display: true, text: 'Distribuição de Erros por IP' } } }
+        });
+    </script>
+</body>
+</html>

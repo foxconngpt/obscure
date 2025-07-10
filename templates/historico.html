@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico de Diagnósticos</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .execucao { margin-bottom: 30px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { padding: 8px 12px; border: 1px solid #ccc; }
+        th { background-color: #f4f4f4; }
+        h2 { color: #007ACC; }
+    </style>
+</head>
+<body>
+    <h2>📜 Histórico de Diagnósticos</h2>
+    {% for execucao in execucoes %}
+    <div class="execucao">
+        <h3>🕓 Execução em: {{ execucao.data }}</h3>
+        <table>
+            <thead>
+                <tr><th>IP</th><th>Status</th><th>Interface</th><th>Erro</th><th>Descrição</th></tr>
+            </thead>
+            <tbody>
+                {% for r in execucao.resultados %}
+                <tr><td>{{ r.ip }}</td><td>{{ r.status }}</td><td>{{ r.interface }}</td><td>{{ r.erro }}</td><td>{{ r.descricao }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endfor %}
+    <a href="/" class="botao-link">⬅️ Voltar ao Dashboard</a>
+</body>
+</html>

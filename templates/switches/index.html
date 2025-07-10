@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventário de Switches</title>
+</head>
+<body>
+    <h1>Inventário de Switches</h1>
+    <table border="1">
+        <tr>
+            <th>IP</th>
+            <th>Hostname</th>
+            <th>Modelo</th>
+            <th>Área</th>
+        </tr>
+        {% for switch in switches %}
+        <tr>
+            <td>{{ switch.ip }}</td>
+            <td>{{ switch.hostname }}</td>
+            <td>{{ switch.modelo }}</td>
+            <td>{{ switch.area }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <form action="{{ url_for('switches.executar_diagnostico') }}" method="post">
+        <button type="submit">Executar Diagnóstico</button>
+    </form>
+</body>
+</html>

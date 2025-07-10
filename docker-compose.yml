@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_SECRET_KEY=supersecreta
+      - DATABASE_URL=postgresql://postgres:senha@db:5432/postgres
+    depends_on:
+      - db
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: senha
+    ports:
+      - "5432:5432"

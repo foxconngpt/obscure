@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diagnóstico de Switches</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <h2>Diagnóstico de Portas Err-Disable</h2>
+    <form method="POST" action="/executar_diagnostico">
+        <label>IPs (um por linha):</label><br>
+        <textarea name="ips" rows="5" cols="40" required></textarea><br><br>
+        <label>Usuário SSH:</label><br>
+        <input type="text" name="username" required><br><br>
+        <label>Senha SSH:</label><br>
+        <input type="password" name="password" required><br><br>
+        <input type="submit" value="Executar Diagnóstico">
+    </form>
+
+    <h3>🧾 Log:</h3>
+    <pre id="log" style="background-color:#f0f0f0;padding:10px;height:300px;overflow:auto;"></pre>
+
+    <script>
+        var socket = io();
+        var log = document.getElementById('log');
+        socket.on('log_update', function(msg) {
+            log.textContent += msg + '\n';
+            log.scrollTop = log.scrollHeight;
+        });
+    </script>
+</body>
+</html>

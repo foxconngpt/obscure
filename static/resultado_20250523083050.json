@@ -1,0 +1,23 @@
+[
+    {
+        "ip": "10.8.35.177",
+        "status": "Conectado",
+        "interface": "Gi0/4",
+        "erro": "bpduguard",
+        "descricao": "Loop detectado - BPDU"
+    },
+    {
+        "ip": "10.8.35.177",
+        "status": "Conectado",
+        "interface": "Gi0/5",
+        "erro": "psecure-violation",
+        "descricao": "MAC Address n\u00e3o autorizado"
+    },
+    {
+        "ip": "10.8.35.177",
+        "status": "Conectado",
+        "interface": "Gi0/6",
+        "erro": "bpduguard",
+        "descricao": "Loop detectado - BPDU"
+    }
+]

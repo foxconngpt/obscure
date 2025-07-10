@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><title>Resultados do Diagnóstico</title>
+<style>
+    body { font-family: Arial; margin: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { padding: 8px 12px; border: 1px solid #ccc; }
+    th { background-color: #f4f4f4; }
+    .botao { background-color: #007ACC; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+</style>
+</head><body>
+    <h2>🔎 Resultados do Diagnóstico</h2>
+    <table>
+        <tr><th>IP</th><th>Status</th><th>Interface</th><th>Erro</th><th>Descrição</th><th>Ação</th></tr>
+        {% for r in resultados %}
+        <tr>
+            <td>{{ r.ip }}</td>
+            <td>{{ r.status }}</td>
+            <td>{{ r.interface }}</td>
+            <td>{{ r.erro }}</td>
+            <td>{{ r.descricao }}</td>
+            <td>
+                {% if r.reabilitada %}
+                    ✅ Reabilitada
+                {% else %}
+                <form method="post" action="/reabilitar" style="margin:0;">
+                    <input type="hidden" name="ip" value="{{ r.ip }}">
+                    <input type="hidden" name="interface" value="{{ r.interface }}">
+                    <button type="submit">Reabilitar</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a class="botao" href="{{ url_for('errdisable.download_excel') }}">⬇️ Baixar Excel</a>
+    <a class="botao" href="{{ url_for('errdisable.diagnostico_errdisable') }}">⬅️ Voltar</a>
+</body></html>
