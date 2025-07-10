@@ -1,4 +1,6 @@
-from flask_socketio import SocketIO
-socketio = SocketIO()
+"""Extensões e objetos globais da aplicação."""
 
-from models import db
+from flask_socketio import SocketIO
+
+# Instância do SocketIO usada para enviar logs em tempo real
+socketio = SocketIO()
