@@ -1,10 +1,14 @@
 # init_db.py
+"""Script para inicializar o banco de dados."""
+
 from sqlalchemy import create_engine
-from models import Base, DATABASE_URL
+
+from config import Config
+from models import Base
 
 def inicializar_banco():
     print("🔄 Conectando ao banco...")
-    engine = create_engine(DATABASE_URL)
+    engine = create_engine(Config.DATABASE_URL)
     
     print("📦 Criando tabelas (se não existirem)...")
     Base.metadata.create_all(bind=engine)
