@@ -1,6 +1,6 @@
-.venv/
+venv/
 __pycache__/
 *.pyc
-*.log
 .env
-*.sqlite3
+*.xlsx
+*.log
